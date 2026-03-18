@@ -28,9 +28,15 @@
         <input type="text" class="form-control" id="level" />
       </div>
       <div class="mb-3">
-        <label for="raceClassAlignment" class="form-label">Race, Class, Alignment</label>
-        <input type="text" class="form-control" id="raceClassAlignment"
-          placeholder="e.g. Medium, Human | chaotic, good" />
+        <label class="form-label">Race / Size</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="race" placeholder="e.g. Medium, Human" />
+          <input type="text" class="form-control" id="raceUrl" placeholder="URL (optional)" />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="alignment" class="form-label">Alignment</label>
+        <input type="text" class="form-control" id="alignment" placeholder="e.g. chaotic, good" />
       </div>
       <div class="mb-3">
         <label for="initiative" class="form-label">Initiative</label>
@@ -60,9 +66,19 @@
         <label for="hp" class="form-label">HP</label>
         <input type="text" class="form-control" id="hp" placeholder="e.g. 8 (1d6 + 4)" />
       </div>
-      <div class="mb-3">
-        <label for="saves" class="form-label">Fort, Reflex, Will</label>
-        <input type="text" class="form-control" id="saves" placeholder="e.g. Fort:+1, Reflex:+2, Will:+4" />
+      <div class="row g-2 mb-3">
+        <div class="col">
+          <label for="saveFort" class="form-label">Fortitude</label>
+          <input type="text" class="form-control" id="saveFort" placeholder="e.g. +4" />
+        </div>
+        <div class="col">
+          <label for="saveReflex" class="form-label">Reflex</label>
+          <input type="text" class="form-control" id="saveReflex" placeholder="e.g. +1" />
+        </div>
+        <div class="col">
+          <label for="saveWill" class="form-label">Will</label>
+          <input type="text" class="form-control" id="saveWill" placeholder="e.g. +6 (+7 vs. fear)" />
+        </div>
       </div>
       <div class="mb-3">
         <label for="speed" class="form-label">Speed</label>
@@ -77,13 +93,51 @@
         <input type="text" class="form-control" id="specialAttacks" />
       </div>
       <div class="mb-3">
-        <label for="casterLevel" class="form-label">Caster Level (CL)</label>
-        <input type="text" class="form-control" id="casterLevel" placeholder="e.g. 1st, 3rd, 5th" />
+        <label for="spellcasting" class="form-label">Spellcasting</label>
+        <select class="form-select" id="spellcasting">
+          <option value="none">None</option>
+          <option value="prepared">Prepared</option>
+          <option value="spontaneous">Spontaneous</option>
+        </select>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Spells Known</label>
-        <div id="spellsKnownList"></div>
-        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpellKnown">Add Spell Row</button>
+      <div id="spellcastingSection" style="display:none;">
+        <div class="mb-3">
+          <label for="casterLevel" class="form-label">Caster Level (CL)</label>
+          <input type="text" class="form-control" id="casterLevel" placeholder="e.g. 1st, 3rd, 5th" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" id="spellsLabel">Spells</label>
+          <div id="spellsKnownList"></div>
+          <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpellKnown">Add Spell Row</button>
+        </div>
+        <div class="mb-3" id="spontaneousToggleWrapper" style="display:none;">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="includeSpontaneousPrepared" />
+            <label class="form-check-label" for="includeSpontaneousPrepared">Also include a Spells Prepared table</label>
+          </div>
+          <div id="spontaneousPreparedSection" style="display:none;" class="mt-2">
+            <div id="spontaneousPreparedList"></div>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpontaneousPrepared">Add Spell Row</button>
+          </div>
+        </div>
+        <div class="mb-3" id="spellsKnownToggleWrapper" style="display:none;">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="includeSpellsKnown" />
+            <label class="form-check-label" for="includeSpellsKnown">Also include a Spells Known table</label>
+          </div>
+          <div id="spellsKnownExtraSection" style="display:none;" class="mt-2">
+            <div id="spellsKnownExtraList"></div>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpellKnownExtra">Add Spell Row</button>
+          </div>
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" id="includeSpellbook" />
+            <label class="form-check-label" for="includeSpellbook">Also include a Spellbook table</label>
+          </div>
+          <div id="spellbookSection" style="display:none;" class="mt-2">
+            <div id="spellbookList"></div>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpellbookEntry">Add Spell Row</button>
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="abilityScores" class="form-label">Ability Scores</label>
@@ -111,6 +165,11 @@
         <label for="specialAbilities" class="form-label">Special Abilities</label>
         <textarea class="form-control" id="specialAbilities" rows="2"
           placeholder="e.g. Horrific Visage (Su):Will save DC 15 or become shaken for 1 round; 5/day"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Notable Features</label>
+        <div id="notableFeaturesList"></div>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addNotableFeature">Add Notable Feature</button>
       </div>
       <div class="mb-3">
         <label for="equipment" class="form-label">Equipment</label>

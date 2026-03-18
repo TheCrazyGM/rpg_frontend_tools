@@ -25,6 +25,139 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Show/hide spellcasting section based on dropdown
+  const spellcastingSelect = document.getElementById('spellcasting');
+  const spellcastingSection = document.getElementById('spellcastingSection');
+  const spellsLabel = document.getElementById('spellsLabel');
+
+  const spellLabels = { prepared: 'Spells Prepared', spontaneous: 'Spells Known' };
+
+  const spontaneousToggleWrapper = document.getElementById('spontaneousToggleWrapper');
+  const includeSpontaneousPreparedCheckbox = document.getElementById('includeSpontaneousPrepared');
+  const spontaneousPreparedSection = document.getElementById('spontaneousPreparedSection');
+
+  includeSpontaneousPreparedCheckbox.addEventListener('change', function () {
+    spontaneousPreparedSection.style.display = this.checked ? 'block' : 'none';
+    if (this.checked && !document.getElementById('spontaneousPreparedList').hasChildNodes()) {
+      addSpontaneousPreparedRow();
+    }
+  });
+
+  function createSpontaneousPreparedRow(level = '', spells = '') {
+    const row = document.createElement('div');
+    row.className = 'input-group mb-2';
+    row.innerHTML = `
+      <input type="text" class="form-control" placeholder="Level/Uses (e.g. 1 (2/day))" value="${level}">
+      <input type="text" class="form-control" placeholder="Spells" value="${spells}">
+      <button type="button" class="btn btn-outline-danger remove-spontaneous-prepared-btn">Remove</button>
+    `;
+    return row;
+  }
+
+  function addSpontaneousPreparedRow(level = '', spells = '') {
+    document.getElementById('spontaneousPreparedList').appendChild(createSpontaneousPreparedRow(level, spells));
+  }
+
+  document.getElementById('spontaneousPreparedList').addEventListener('click', function (event) {
+    if (event.target.classList.contains('remove-spontaneous-prepared-btn')) {
+      event.target.closest('.input-group').remove();
+    }
+  });
+
+  document.getElementById('addSpontaneousPrepared').addEventListener('click', () => addSpontaneousPreparedRow());
+
+  const spellsKnownToggleWrapper = document.getElementById('spellsKnownToggleWrapper');
+  const includeSpellsKnownCheckbox = document.getElementById('includeSpellsKnown');
+  const spellsKnownExtraSection = document.getElementById('spellsKnownExtraSection');
+
+  spellcastingSelect.addEventListener('change', function () {
+    const val = this.value;
+    if (val === 'none') {
+      spellcastingSection.style.display = 'none';
+      spellsKnownToggleWrapper.style.display = 'none';
+      spontaneousToggleWrapper.style.display = 'none';
+    } else {
+      spellcastingSection.style.display = 'block';
+      spellsLabel.textContent = spellLabels[val];
+      spellsKnownToggleWrapper.style.display = val === 'prepared' ? 'block' : 'none';
+      spontaneousToggleWrapper.style.display = val === 'spontaneous' ? 'block' : 'none';
+      if (val !== 'prepared') {
+        includeSpellsKnownCheckbox.checked = false;
+        spellsKnownExtraSection.style.display = 'none';
+        includeSpellbookCheckbox.checked = false;
+        spellbookSection.style.display = 'none';
+      }
+      if (val !== 'spontaneous') {
+        includeSpontaneousPreparedCheckbox.checked = false;
+        spontaneousPreparedSection.style.display = 'none';
+      }
+    }
+  });
+
+  includeSpellsKnownCheckbox.addEventListener('change', function () {
+    spellsKnownExtraSection.style.display = this.checked ? 'block' : 'none';
+    if (this.checked && !document.getElementById('spellsKnownExtraList').hasChildNodes()) {
+      addExtraSpellRow();
+    }
+  });
+
+  function createExtraSpellRow(level = '', spells = '') {
+    const row = document.createElement('div');
+    row.className = 'input-group mb-2';
+    row.innerHTML = `
+      <input type="text" class="form-control" placeholder="Level/Uses (e.g. 1 (4/day))" value="${level}">
+      <input type="text" class="form-control" placeholder="Spells" value="${spells}">
+      <button type="button" class="btn btn-outline-danger remove-extra-spell-btn">Remove</button>
+    `;
+    return row;
+  }
+
+  function addExtraSpellRow(level = '', spells = '') {
+    document.getElementById('spellsKnownExtraList').appendChild(createExtraSpellRow(level, spells));
+  }
+
+  document.getElementById('spellsKnownExtraList').addEventListener('click', function (event) {
+    if (event.target.classList.contains('remove-extra-spell-btn')) {
+      event.target.closest('.input-group').remove();
+    }
+  });
+
+  document.getElementById('addSpellKnownExtra').addEventListener('click', () => addExtraSpellRow());
+
+  // Spellbook
+  const includeSpellbookCheckbox = document.getElementById('includeSpellbook');
+  const spellbookSection = document.getElementById('spellbookSection');
+
+  includeSpellbookCheckbox.addEventListener('change', function () {
+    spellbookSection.style.display = this.checked ? 'block' : 'none';
+    if (this.checked && !document.getElementById('spellbookList').hasChildNodes()) {
+      addSpellbookRow();
+    }
+  });
+
+  function createSpellbookRow(level = '', spells = '') {
+    const row = document.createElement('div');
+    row.className = 'input-group mb-2';
+    row.innerHTML = `
+      <input type="text" class="form-control" placeholder="Level (e.g. 1st)" value="${level}">
+      <input type="text" class="form-control" placeholder="Spells" value="${spells}">
+      <button type="button" class="btn btn-outline-danger remove-spellbook-btn">Remove</button>
+    `;
+    return row;
+  }
+
+  function addSpellbookRow(level = '', spells = '') {
+    document.getElementById('spellbookList').appendChild(createSpellbookRow(level, spells));
+  }
+
+  document.getElementById('spellbookList').addEventListener('click', function (event) {
+    if (event.target.classList.contains('remove-spellbook-btn')) {
+      event.target.closest('.input-group').remove();
+    }
+  });
+
+  document.getElementById('addSpellbookEntry').addEventListener('click', () => addSpellbookRow());
+
   // Add spell button click handler
   document.getElementById('addSpellKnown').addEventListener('click', () => addSpellRow());
 
@@ -156,12 +289,49 @@ document.addEventListener('DOMContentLoaded', () => {
     addTraitRow();
   }
 
+  // Dynamic Notable Features Fields
+  function createNotableFeatureRow(name = '', description = '') {
+    const row = document.createElement('div');
+    row.className = 'input-group mb-2';
+    row.innerHTML = `
+      <input type="text" class="form-control" placeholder="Feature name" value="${name}">
+      <input type="text" class="form-control" placeholder="Description" value="${description}">
+      <button type="button" class="btn btn-outline-danger remove-feature-btn">Remove</button>
+    `;
+    return row;
+  }
+
+  document.getElementById('notableFeaturesList').addEventListener('click', function(event) {
+    if (event.target.classList.contains('remove-feature-btn')) {
+      event.target.closest('.input-group').remove();
+    }
+  });
+
+  document.getElementById('addNotableFeature').addEventListener('click', () => {
+    document.getElementById('notableFeaturesList').appendChild(createNotableFeatureRow());
+  });
+
   // Handle form submission
   document.getElementById('characterForm').addEventListener('submit', function (e) {
     e.preventDefault();
     
     // Helper function to get trimmed value or empty string
     const get = id => document.getElementById(id)?.value.trim() || '';
+
+    // Build race markdown link
+    const race = get('race');
+    const raceUrl = get('raceUrl');
+    const raceMarkdown = race && raceUrl ? `[${race}](${raceUrl})` : race;
+
+    // Gather Notable Features rows
+    const featureRows = Array.from(document.getElementById('notableFeaturesList').children);
+    const notableFeaturesMarkdown = featureRows.map(row => {
+      const [nameInp, descInp] = row.querySelectorAll('input');
+      const name = nameInp.value.trim();
+      const desc = descInp.value.trim();
+      if (!name) return null;
+      return desc ? `**${name}**: ${desc}` : `**${name}**`;
+    }).filter(Boolean).join('<br>');
 
     // Gather Traits rows
     const traitRows = Array.from(document.getElementById('traitsList').children);
@@ -183,6 +353,30 @@ document.addEventListener('DOMContentLoaded', () => {
       return url ? `[${name}](${url})` : name;
     }).filter(Boolean).join(', ') || 'none';
 
+    // Gather Spontaneous Prepared rows
+    const spontaneousPreparedRows = Array.from(document.getElementById('spontaneousPreparedList').children);
+    const spontaneousPreparedMarkdown = spontaneousPreparedRows.map(row => {
+      const [levelInp, spellsInp] = row.querySelectorAll('input');
+      if (!levelInp.value.trim() && !spellsInp.value.trim()) return null;
+      return `| ${levelInp.value.trim()} | ${spellsInp.value.trim()} |`;
+    }).filter(Boolean).join('\n');
+
+    // Gather Spellbook rows
+    const spellbookRows = Array.from(document.getElementById('spellbookList').children);
+    const spellbookMarkdown = spellbookRows.map(row => {
+      const [levelInp, spellsInp] = row.querySelectorAll('input');
+      if (!levelInp.value.trim() && !spellsInp.value.trim()) return null;
+      return `| ${levelInp.value.trim()} | ${spellsInp.value.trim()} |`;
+    }).filter(Boolean).join('\n');
+
+    // Gather extra Spells Known rows (Prepared + Spells Known checkbox)
+    const extraSpellRows = Array.from(document.getElementById('spellsKnownExtraList').children);
+    const spellsKnownExtraMarkdown = extraSpellRows.map(row => {
+      const [levelInp, spellsInp] = row.querySelectorAll('input');
+      if (!levelInp.value.trim() && !spellsInp.value.trim()) return null;
+      return `| ${levelInp.value.trim()} | ${spellsInp.value.trim()} |`;
+    }).filter(Boolean).join('\n');
+
     // Gather Spells Known rows
     const spellRows = Array.from(document.getElementById('spellsKnownList').children);
     const spellsKnownMarkdown = spellRows.map(row => {
@@ -199,13 +393,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 | Templates:    | ${get('templates')} | Character Level ${get('level')} |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| ${get('raceClassAlignment')} |  | Initiative ${get('initiative')}     |
+| ${raceMarkdown} | ${get('alignment')} | Initiative ${get('initiative')}     |
 | Senses:       | ${get('senses')} | Perception ${get('perception')}     |
 
 | Defenses            |                                         |         |
 | ------------------- | --------------------------------------- | ------- |
 | **AC**:${get('ac')}           | ${get('acDetails')}        | ${get('acMods')} |
-| **HP**: ${get('hp')} | ${get('saves')} |
+| **HP**: ${get('hp')} | **Fort**:${get('saveFort')}, **Reflex**:${get('saveReflex')}, **Will**:${get('saveWill')} |
 
 | Offense         |                          |
 | --------------- | ------------------------ |
@@ -213,9 +407,21 @@ document.addEventListener('DOMContentLoaded', () => {
 | Melee           | ${get('melee')} |
 | Special Attacks | ${get('specialAttacks')} |
 
+${spellcastingSelect.value !== 'none' ? `| ${spellLabels[spellcastingSelect.value]} | (CL ${get('casterLevel')}) |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+${spellsKnownMarkdown}` : ''}${includeSpontaneousPreparedCheckbox.checked && spontaneousPreparedMarkdown ? `
+
+| Spells Prepared | (CL ${get('casterLevel')}) |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+${spontaneousPreparedMarkdown}` : ''}${includeSpellsKnownCheckbox.checked && spellsKnownExtraMarkdown ? `
+
 | Spells Known | (CL ${get('casterLevel')}) |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spellsKnownMarkdown}
+${spellsKnownExtraMarkdown}` : ''}${includeSpellbookCheckbox.checked && spellbookMarkdown ? `
+
+| Spellbook | |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+${spellbookMarkdown}` : ''}
 
 | Statistics     |                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -227,7 +433,8 @@ ${spellsKnownMarkdown}
 | Other             |                                                                          |
 | ----------------- | ------------------------------------------------------------------------ |
 | Special Abilities | ${get('specialAbilities')} |
-| Equipment:        | ${get('equipment')}          |`;
+| Equipment:        | ${get('equipment')}          |${notableFeaturesMarkdown ? `
+| Notable Features  | ${notableFeaturesMarkdown} |` : ''}`;
 
     // Display markdown output
     const output = document.getElementById('markdownOutput');
