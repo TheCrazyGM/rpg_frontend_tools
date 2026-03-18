@@ -45,9 +45,16 @@
         <input type="text" class="form-control" id="perception" />
       </div>
       <div class="mb-3">
-        <label for="ac" class="form-label">AC, Touch, Flat-footed, Modifiers</label>
-        <input type="text" class="form-control" id="ac"
-          placeholder="e.g. 12 | touch:12, flat-footed:29(31) | +2 Dex," />
+        <label for="ac" class="form-label">AC</label>
+        <input type="text" class="form-control" id="ac" placeholder="e.g. 12" />
+      </div>
+      <div class="mb-3">
+        <label for="acDetails" class="form-label">AC Details (Touch, Flat-footed)</label>
+        <input type="text" class="form-control" id="acDetails" placeholder="e.g. touch:12, flat-footed:29(31)" />
+      </div>
+      <div class="mb-3">
+        <label for="acMods" class="form-label">AC Modifiers</label>
+        <input type="text" class="form-control" id="acMods" placeholder="e.g. +2 Dex" />
       </div>
       <div class="mb-3">
         <label for="hp" class="form-label">HP</label>
@@ -70,6 +77,10 @@
         <input type="text" class="form-control" id="specialAttacks" />
       </div>
       <div class="mb-3">
+        <label for="casterLevel" class="form-label">Caster Level (CL)</label>
+        <input type="text" class="form-control" id="casterLevel" placeholder="e.g. 1st, 3rd, 5th" />
+      </div>
+      <div class="mb-3">
         <label class="form-label">Spells Known</label>
         <div id="spellsKnownList"></div>
         <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpellKnown">Add Spell Row</button>
@@ -80,9 +91,16 @@
           placeholder="e.g. Str: 10, Dex: 14, Con: 12, Int: 12, Wis: 14, Cha: 18" />
       </div>
       <div class="mb-3">
-        <label for="feats" class="form-label">Feats</label>
-        <textarea class="form-control" id="feats" rows="2"
-          placeholder="e.g. Combat Casting [url], Toughness [url]"></textarea>
+        <label class="form-label">Feats</label>
+        <div id="featsList"></div>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addFeat">Add Feat</button>
+        <div id="featMinMsg" class="text-warning small mt-1" style="display:none;">Every PC has at least 1 feat!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Traits</label>
+        <div id="traitsList"></div>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addTrait">Add Trait</button>
+        <div id="traitMinMsg" class="text-warning small mt-1" style="display:none;">Every PC has at least 1 trait!</div>
       </div>
       <div class="mb-3">
         <label for="skills" class="form-label">Skills</label>
