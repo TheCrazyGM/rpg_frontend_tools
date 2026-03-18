@@ -289,6 +289,62 @@ document.addEventListener('DOMContentLoaded', () => {
     addTraitRow();
   }
 
+  // Dynamic Attacks Fields
+  function createAttackRow(type = 'melee', description = '') {
+    const row = document.createElement('div');
+    row.className = 'input-group mb-2';
+    row.innerHTML = `
+      <select class="form-select" style="max-width:130px;">
+        <option value="melee" ${type === 'melee' ? 'selected' : ''}>Melee</option>
+        <option value="ranged" ${type === 'ranged' ? 'selected' : ''}>Ranged</option>
+        <option value="other" ${type === 'other' ? 'selected' : ''}>Other</option>
+      </select>
+      <input type="text" class="form-control" placeholder="e.g. +1 to hit, 1d8+1" value="${description}">
+      <button type="button" class="btn btn-outline-danger remove-attack-btn">Remove</button>
+    `;
+    return row;
+  }
+
+  function addAttackRow(type = 'melee', description = '') {
+    document.getElementById('attacksList').appendChild(createAttackRow(type, description));
+  }
+
+  let attackMsgTimer = null;
+
+  function showAttackMinMsg() {
+    const msg = document.getElementById('attackMinMsg');
+    clearTimeout(attackMsgTimer);
+    msg.style.transition = 'none';
+    msg.style.opacity = '1';
+    msg.style.display = 'block';
+    attackMsgTimer = setTimeout(() => {
+      msg.style.transition = 'opacity 1s ease';
+      msg.style.opacity = '0';
+      setTimeout(() => { msg.style.display = 'none'; }, 1000);
+    }, 5000);
+  }
+
+  document.getElementById('attacksList').addEventListener('click', function (event) {
+    if (event.target.classList.contains('remove-attack-btn')) {
+      const list = document.getElementById('attacksList');
+      if (list.children.length > 1) {
+        event.target.closest('.input-group').remove();
+        document.getElementById('attackMinMsg').style.display = 'none';
+      } else {
+        showAttackMinMsg();
+      }
+    }
+  });
+
+  document.getElementById('addAttack').addEventListener('click', () => {
+    addAttackRow();
+    document.getElementById('attackMinMsg').style.display = 'none';
+  });
+
+  if (!document.getElementById('attacksList').hasChildNodes()) {
+    addAttackRow('melee');
+  }
+
   // Dynamic Notable Features Fields
   function createNotableFeatureRow(name = '', description = '') {
     const row = document.createElement('div');
@@ -322,6 +378,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const race = get('race');
     const raceUrl = get('raceUrl');
     const raceMarkdown = race && raceUrl ? `[${race}](${raceUrl})` : race;
+
+    // Gather Attack rows
+    const attackRows = Array.from(document.getElementById('attacksList').children);
+    const attacksMarkdown = attackRows.map(row => {
+      const typeSelect = row.querySelector('select');
+      const descInp = row.querySelector('input');
+      const type = typeSelect.options[typeSelect.selectedIndex].text;
+      const desc = descInp.value.trim();
+      if (!desc) return null;
+      return `| ${type} | ${desc} |`;
+    }).filter(Boolean).join('\n') || '| None | |';
 
     // Gather Notable Features rows
     const featureRows = Array.from(document.getElementById('notableFeaturesList').children);
@@ -403,8 +470,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 | Offense         |                          |
 | --------------- | ------------------------ |
-| Speed           | ${get('speed')}                   |
-| Melee           | ${get('melee')} |
+| Speed           | ${get('speed')} |
+${attacksMarkdown}
 | Special Attacks | ${get('specialAttacks')} |
 
 ${spellcastingSelect.value !== 'none' ? `| ${spellLabels[spellcastingSelect.value]} | (CL ${get('casterLevel')}) |

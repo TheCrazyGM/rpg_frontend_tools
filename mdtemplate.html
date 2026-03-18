@@ -85,8 +85,10 @@
         <input type="text" class="form-control" id="speed" />
       </div>
       <div class="mb-3">
-        <label for="melee" class="form-label">Melee</label>
-        <input type="text" class="form-control" id="melee" />
+        <label class="form-label">Attacks</label>
+        <div id="attacksList"></div>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addAttack">Add Attack</button>
+        <div id="attackMinMsg" class="text-warning small mt-1" style="display:none;">A character must have at least 1 attack entry!</div>
       </div>
       <div class="mb-3">
         <label for="specialAttacks" class="form-label">Special Attacks</label>
