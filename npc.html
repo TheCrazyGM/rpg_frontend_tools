@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NPC Maker</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1>NPC Maker</h1>
+
+      <div class="mb-3">
+        <label for="npcName" class="form-label">NPC Name:</label>
+        <input type="text" class="form-control" id="npcName" />
+      </div>
+
+      <div class="mb-3">
+        <label for="npcDescription" class="form-label"
+          >Description (Appearance/Personality):</label
+        >
+        <textarea class="form-control" id="npcDescription" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="npcRace" class="form-label">Race:</label>
+        <input type="text" class="form-control" id="npcRace" />
+      </div>
+
+      <div class="mb-3">
+        <label for="npcClass" class="form-label">Class/Occupation:</label>
+        <input type="text" class="form-control" id="npcClass" />
+      </div>
+
+      <div class="mb-3">
+        <label for="npcAlignment" class="form-label">Alignment:</label>
+        <select class="form-select" id="npcAlignment">
+          <option value="Lawful Good">Lawful Good</option>
+          <option value="Neutral Good">Neutral Good</option>
+          <option value="Chaotic Good">Chaotic Good</option>
+          <option value="Lawful Neutral">Lawful Neutral</option>
+          <option value="True Neutral">True Neutral</option>
+          <option value="Chaotic Neutral">Chaotic Neutral</option>
+          <option value="Lawful Evil">Lawful Evil</option>
+          <option value="Neutral Evil">Neutral Evil</option>
+          <option value="Chaotic Evil">Chaotic Evil</option>
+        </select>
+      </div>
+
+      <!-- Ability Scores -->
+      <div class="mb-3">
+        <h3>Ability Scores</h3>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="npcStr" class="form-label">STR:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="npcStr"
+              min="1"
+              max="30"
+              value="10"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="npcDex" class="form-label">DEX:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="npcDex"
+              min="1"
+              max="30"
+              value="10"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="npcCon" class="form-label">CON:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="npcCon"
+              min="1"
+              max="30"
+              value="10"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="npcInt" class="form-label">INT:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="npcInt"
+              min="1"
+              max="30"
+              value="10"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="npcWis" class="form-label">WIS:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="npcWis"
+              min="1"
+              max="30"
+              value="10"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="npcCha" class="form-label">CHA:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="npcCha"
+              min="1"
+              max="30"
+              value="10"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="mb-3">
+        <h3>Skills</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillAcrobatics"
+              />
+              <label class="form-check-label" for="skillAcrobatics"
+                >Acrobatics</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillAnimalHandling"
+              />
+              <label class="form-check-label" for="skillAnimalHandling"
+                >Animal Handling</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillArcana"
+              />
+              <label class="form-check-label" for="skillArcana">Arcana</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillAthletics"
+              />
+              <label class="form-check-label" for="skillAthletics"
+                >Athletics</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillDeception"
+              />
+              <label class="form-check-label" for="skillDeception"
+                >Deception</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillHistory"
+              />
+              <label class="form-check-label" for="skillHistory">History</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillInsight"
+              />
+              <label class="form-check-label" for="skillInsight">Insight</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillIntimidation"
+              />
+              <label class="form-check-label" for="skillIntimidation"
+                >Intimidation</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillInvestigation"
+              />
+              <label class="form-check-label" for="skillInvestigation"
+                >Investigation</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillMedicine"
+              />
+              <label class="form-check-label" for="skillMedicine"
+                >Medicine</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillNature"
+              />
+              <label class="form-check-label" for="skillNature">Nature</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillPerception"
+              />
+              <label class="form-check-label" for="skillPerception"
+                >Perception</label
+              >
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillPerformance"
+              />
+              <label class="form-check-label" for="skillPerformance"
+                >Performance</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillPersuasion"
+              />
+              <label class="form-check-label" for="skillPersuasion"
+                >Persuasion</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillReligion"
+              />
+              <label class="form-check-label" for="skillReligion"
+                >Religion</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillSleightOfHand"
+              />
+              <label class="form-check-label" for="skillSleightOfHand"
+                >Sleight of Hand</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillStealth"
+              />
+              <label class="form-check-label" for="skillStealth">Stealth</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="skillSurvival"
+              />
+              <label class="form-check-label" for="skillSurvival"
+                >Survival</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipment -->
+      <div class="mb-3">
+        <h3>Equipment</h3>
+        <div id="equipmentContainer">
+          <!-- Dynamic equipment entries will be added here -->
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm mt-2"
+          onclick="addEquipment()"
+        >
+          Add Equipment
+        </button>
+      </div>
+
+      <div class="mb-3">
+        <label for="npcBackground" class="form-label"
+          >Background/History:</label
+        >
+        <textarea class="form-control" id="npcBackground" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="npcNotes" class="form-label"
+          >Notes (Secrets, Goals, etc.):</label
+        >
+        <textarea class="form-control" id="npcNotes" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="generateJSON()">
+        Generate NPC
+      </button>
+
+      <div class="mt-4">
+        <h2>Generated JSON:</h2>
+        <div
+          id="output"
+          class="border rounded p-3 bg-light font-monospace"
+        ></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/npc.js"></script>
+  </body>
+</html>

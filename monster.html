@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monster Creator</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1>Monster Creator</h1>
+
+      <div class="row">
+        <!-- Basic Information -->
+        <div class="col-md-6">
+          <h2>Basic Information</h2>
+          <div class="mb-3">
+            <label for="monsterName" class="form-label">Monster Name:</label>
+            <input type="text" class="form-control" id="monsterName" />
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="size" class="form-label">Size:</label>
+              <select class="form-select" id="size">
+                <option value="tiny">Tiny</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="huge">Huge</option>
+                <option value="gargantuan">Gargantuan</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="type" class="form-label">Type:</label>
+              <select class="form-select" id="type">
+                <option value="aberration">Aberration</option>
+                <option value="beast">Beast</option>
+                <option value="celestial">Celestial</option>
+                <option value="construct">Construct</option>
+                <option value="dragon">Dragon</option>
+                <option value="elemental">Elemental</option>
+                <option value="fey">Fey</option>
+                <option value="fiend">Fiend</option>
+                <option value="giant">Giant</option>
+                <option value="humanoid">Humanoid</option>
+                <option value="monstrosity">Monstrosity</option>
+                <option value="ooze">Ooze</option>
+                <option value="plant">Plant</option>
+                <option value="undead">Undead</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="alignment" class="form-label">Alignment:</label>
+              <select class="form-select" id="alignment">
+                <option value="lawful_good">Lawful Good</option>
+                <option value="neutral_good">Neutral Good</option>
+                <option value="chaotic_good">Chaotic Good</option>
+                <option value="lawful_neutral">Lawful Neutral</option>
+                <option value="true_neutral">True Neutral</option>
+                <option value="chaotic_neutral">Chaotic Neutral</option>
+                <option value="lawful_evil">Lawful Evil</option>
+                <option value="neutral_evil">Neutral Evil</option>
+                <option value="chaotic_evil">Chaotic Evil</option>
+                <option value="unaligned">Unaligned</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="cr" class="form-label">Challenge Rating:</label>
+              <select class="form-select" id="cr">
+                <option value="0">0 (0 XP)</option>
+                <option value="0.125">1/8 (25 XP)</option>
+                <option value="0.25">1/4 (50 XP)</option>
+                <option value="0.5">1/2 (100 XP)</option>
+                <option value="1">1 (200 XP)</option>
+                <option value="2">2 (450 XP)</option>
+                <option value="3">3 (700 XP)</option>
+                <option value="4">4 (1,100 XP)</option>
+                <option value="5">5 (1,800 XP)</option>
+                <option value="6">6 (2,300 XP)</option>
+                <option value="7">7 (2,900 XP)</option>
+                <option value="8">8 (3,900 XP)</option>
+                <option value="9">9 (5,000 XP)</option>
+                <option value="10">10 (5,900 XP)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Combat Stats -->
+        <div class="col-md-6">
+          <h2>Combat Stats</h2>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="armorClass" class="form-label">Armor Class:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="armorClass"
+                min="0"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="hitPoints" class="form-label">Hit Points:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="hitPoints"
+                min="1"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="speed" class="form-label">Speed (ft):</label>
+              <input
+                type="number"
+                class="form-control"
+                id="speed"
+                min="0"
+                value="30"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="str" class="form-label">STR:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="str"
+                min="1"
+                max="30"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="dex" class="form-label">DEX:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="dex"
+                min="1"
+                max="30"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="con" class="form-label">CON:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="con"
+                min="1"
+                max="30"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="int" class="form-label">INT:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="int"
+                min="1"
+                max="30"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="wis" class="form-label">WIS:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="wis"
+                min="1"
+                max="30"
+                value="10"
+              />
+            </div>
+            <div class="col">
+              <label for="cha" class="form-label">CHA:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cha"
+                min="1"
+                max="30"
+                value="10"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills and Abilities -->
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <h2>Skills and Saves</h2>
+          <div class="mb-3">
+            <label class="form-label">Saving Throw Proficiencies:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="strSave" />
+              <label class="form-check-label" for="strSave">Strength</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="dexSave" />
+              <label class="form-check-label" for="dexSave">Dexterity</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="conSave" />
+              <label class="form-check-label" for="conSave">Constitution</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="intSave" />
+              <label class="form-check-label" for="intSave">Intelligence</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="wisSave" />
+              <label class="form-check-label" for="wisSave">Wisdom</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="chaSave" />
+              <label class="form-check-label" for="chaSave">Charisma</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Skill Proficiencies:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="acrobatics" />
+              <label class="form-check-label" for="acrobatics"
+                >Acrobatics</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="animalHandling"
+              />
+              <label class="form-check-label" for="animalHandling"
+                >Animal Handling</label
+              >
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="arcana" />
+              <label class="form-check-label" for="arcana">Arcana</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="athletics" />
+              <label class="form-check-label" for="athletics">Athletics</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="deception" />
+              <label class="form-check-label" for="deception">Deception</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="history" />
+              <label class="form-check-label" for="history">History</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="insight" />
+              <label class="form-check-label" for="insight">Insight</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="intimidation"
+              />
+              <label class="form-check-label" for="intimidation"
+                >Intimidation</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="investigation"
+              />
+              <label class="form-check-label" for="investigation"
+                >Investigation</label
+              >
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="medicine" />
+              <label class="form-check-label" for="medicine">Medicine</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="nature" />
+              <label class="form-check-label" for="nature">Nature</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="perception" />
+              <label class="form-check-label" for="perception"
+                >Perception</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="performance"
+              />
+              <label class="form-check-label" for="performance"
+                >Performance</label
+              >
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="persuasion" />
+              <label class="form-check-label" for="persuasion"
+                >Persuasion</label
+              >
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="religion" />
+              <label class="form-check-label" for="religion">Religion</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="sleightOfHand"
+              />
+              <label class="form-check-label" for="sleightOfHand"
+                >Sleight of Hand</label
+              >
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="stealth" />
+              <label class="form-check-label" for="stealth">Stealth</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="survival" />
+              <label class="form-check-label" for="survival">Survival</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h2>Special Abilities</h2>
+          <div id="specialAbilitiesContainer">
+            <!-- Dynamic ability entries will be added here -->
+          </div>
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm mt-2"
+            onclick="addAbility()"
+          >
+            Add Special Ability
+          </button>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-4">
+        <h2>Actions</h2>
+        <div id="actionsContainer">
+          <!-- Dynamic action entries will be added here -->
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm mt-2"
+          onclick="addAction()"
+        >
+          Add Action
+        </button>
+      </div>
+
+      <!-- Legendary Actions -->
+      <div class="mt-4">
+        <h2>Legendary Actions</h2>
+        <div id="legendaryActionsContainer">
+          <!-- Dynamic legendary action entries will be added here -->
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm mt-2"
+          onclick="addLegendaryAction()"
+        >
+          Add Legendary Action
+        </button>
+      </div>
+      <div class="mt-4">
+        <button class="btn btn-primary" onclick="generateJSON()">
+          Generate Monster
+        </button>
+      </div>
+      <div class="mt-4">
+        <h2>Generated JSON:</h2>
+        <div
+          id="output"
+          class="border rounded p-3 bg-light font-monospace"
+        ></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/monster.js"></script>
+  </body>
+</html>

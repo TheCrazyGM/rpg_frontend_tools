@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Building Tool</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1>World Building Tool</h1>
+
+      <!-- World Overview -->
+      <div class="row">
+        <div class="col-md-6">
+          <h2>World Overview</h2>
+          <div class="mb-3">
+            <label for="worldName" class="form-label">World Name:</label>
+            <input type="text" class="form-control" id="worldName" />
+          </div>
+
+          <div class="mb-3">
+            <label for="genre" class="form-label">Genre/Setting:</label>
+            <select class="form-select" id="genre">
+              <option value="high_fantasy">High Fantasy</option>
+              <option value="low_fantasy">Low Fantasy</option>
+              <option value="dark_fantasy">Dark Fantasy</option>
+              <option value="steampunk">Steampunk</option>
+              <option value="post_apocalyptic">Post-Apocalyptic</option>
+              <option value="mythological">Mythological</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="technology" class="form-label">Technology Level:</label>
+            <select class="form-select" id="technology">
+              <option value="primitive">Primitive</option>
+              <option value="medieval">Medieval</option>
+              <option value="renaissance">Renaissance</option>
+              <option value="industrial">Industrial</option>
+              <option value="modern">Modern</option>
+              <option value="advanced">Advanced/Magical</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="description" class="form-label"
+              >World Description:</label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              rows="3"
+              placeholder="Describe your world's key features and atmosphere..."
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="history" class="form-label">Brief History:</label>
+            <textarea
+              class="form-control"
+              id="history"
+              rows="3"
+              placeholder="Key historical events that shaped the world..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regions -->
+      <h2 class="mt-4">Regions</h2>
+      <div id="regionsContainer">
+        <div class="region-entry mb-3 border p-3">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label">Region Name:</label>
+              <input type="text" class="form-control region-name" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Climate:</label>
+              <select class="form-select region-climate">
+                <option value="tropical">Tropical</option>
+                <option value="temperate">Temperate</option>
+                <option value="arctic">Arctic</option>
+                <option value="desert">Desert</option>
+                <option value="mountains">Mountains</option>
+                <option value="coastal">Coastal</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Population Density:</label>
+              <select class="form-select region-population">
+                <option value="uninhabited">Uninhabited</option>
+                <option value="sparse">Sparse</option>
+                <option value="moderate">Moderate</option>
+                <option value="dense">Dense</option>
+                <option value="overcrowded">Overcrowded</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <label class="form-label">Description:</label>
+            <textarea
+              class="form-control region-description"
+              rows="2"
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-danger btn-sm"
+            onclick="this.parentElement.remove()"
+          >
+            Remove Region
+          </button>
+        </div>
+      </div>
+      <button class="btn btn-secondary mb-3" onclick="addRegion()">
+        Add Region
+      </button>
+
+      <!-- Factions -->
+      <h2 class="mt-4">Factions</h2>
+      <div id="factionsContainer">
+        <div class="faction-entry mb-3 border p-3">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label">Faction Name:</label>
+              <input type="text" class="form-control faction-name" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Type:</label>
+              <select class="form-select faction-type">
+                <option value="political">Political</option>
+                <option value="religious">Religious</option>
+                <option value="military">Military</option>
+                <option value="criminal">Criminal</option>
+                <option value="mercantile">Mercantile</option>
+                <option value="arcane">Arcane</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Influence:</label>
+              <select class="form-select faction-influence">
+                <option value="local">Local</option>
+                <option value="regional">Regional</option>
+                <option value="national">National</option>
+                <option value="global">Global</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <label class="form-label">Goals/Description:</label>
+            <textarea
+              class="form-control faction-description"
+              rows="2"
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-danger btn-sm"
+            onclick="this.parentElement.remove()"
+          >
+            Remove Faction
+          </button>
+        </div>
+      </div>
+      <button class="btn btn-secondary mb-3" onclick="addFaction()">
+        Add Faction
+      </button>
+
+      <!-- Deities -->
+      <h2 class="mt-4">Deities & Religion</h2>
+      <div id="deitiesContainer">
+        <div class="deity-entry mb-3 border p-3">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label">Deity Name:</label>
+              <input type="text" class="form-control deity-name" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Domain:</label>
+              <select class="form-select deity-domain">
+                <option value="life">Life</option>
+                <option value="death">Death</option>
+                <option value="war">War</option>
+                <option value="nature">Nature</option>
+                <option value="magic">Magic</option>
+                <option value="knowledge">Knowledge</option>
+                <option value="trickery">Trickery</option>
+                <option value="forge">Forge</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Alignment:</label>
+              <select class="form-select deity-alignment">
+                <option value="lawful_good">Lawful Good</option>
+                <option value="neutral_good">Neutral Good</option>
+                <option value="chaotic_good">Chaotic Good</option>
+                <option value="lawful_neutral">Lawful Neutral</option>
+                <option value="true_neutral">True Neutral</option>
+                <option value="chaotic_neutral">Chaotic Neutral</option>
+                <option value="lawful_evil">Lawful Evil</option>
+                <option value="neutral_evil">Neutral Evil</option>
+                <option value="chaotic_evil">Chaotic Evil</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <label class="form-label">Description/Worship:</label>
+            <textarea
+              class="form-control deity-description"
+              rows="2"
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-danger btn-sm"
+            onclick="this.parentElement.remove()"
+          >
+            Remove Deity
+          </button>
+        </div>
+      </div>
+      <button class="btn btn-secondary mb-3" onclick="addDeity()">
+        Add Deity
+      </button>
+
+      <!-- Magic System -->
+      <h2 class="mt-4">Magic System</h2>
+      <div class="mb-3">
+        <label for="magicPrevalence" class="form-label"
+          >Magic Prevalence:</label
+        >
+        <select class="form-select" id="magicPrevalence">
+          <option value="none">None/Extremely Rare</option>
+          <option value="low">Low Magic</option>
+          <option value="moderate">Moderate Magic</option>
+          <option value="high">High Magic</option>
+          <option value="pervasive">Pervasive Magic</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="magicDescription" class="form-label"
+          >Magic System Description:</label
+        >
+        <textarea
+          class="form-control"
+          id="magicDescription"
+          rows="3"
+          placeholder="Describe how magic works in your world..."
+        ></textarea>
+      </div>
+
+      <!-- Additional Notes -->
+      <div class="mb-3">
+        <label for="notes" class="form-label">Additional Notes:</label>
+        <textarea
+          class="form-control"
+          id="notes"
+          rows="3"
+          placeholder="Any other important information about the world..."
+        ></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="generateWorld()">
+        Generate World
+      </button>
+
+      <div id="output" class="mt-4"></div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/worldbuilding.js"></script>
+  </body>
+</html>

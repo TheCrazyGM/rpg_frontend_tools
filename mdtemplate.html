@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markdown Character Sheet Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1>Markdown Character Sheet Generator</h1>
+    <form id="characterForm">
+      <div class="mb-3">
+        <label for="characterName" class="form-label">Character Name</label>
+        <input type="text" class="form-control" id="characterName" required />
+      </div>
+      <div class="mb-3">
+        <label for="templates" class="form-label">Templates (comma separated, with URLs optional)</label>
+        <input type="text" class="form-control" id="templates"
+          placeholder="e.g. Sorcerer 1 [url], Accursed Bloodline [url]" />
+      </div>
+      <div class="mb-3">
+        <label for="level" class="form-label">Character Level</label>
+        <input type="text" class="form-control" id="level" />
+      </div>
+      <div class="mb-3">
+        <label for="raceClassAlignment" class="form-label">Race, Class, Alignment</label>
+        <input type="text" class="form-control" id="raceClassAlignment"
+          placeholder="e.g. Medium, Human | chaotic, good" />
+      </div>
+      <div class="mb-3">
+        <label for="initiative" class="form-label">Initiative</label>
+        <input type="text" class="form-control" id="initiative" />
+      </div>
+      <div class="mb-3">
+        <label for="senses" class="form-label">Senses</label>
+        <input type="text" class="form-control" id="senses" />
+      </div>
+      <div class="mb-3">
+        <label for="perception" class="form-label">Perception</label>
+        <input type="text" class="form-control" id="perception" />
+      </div>
+      <div class="mb-3">
+        <label for="ac" class="form-label">AC, Touch, Flat-footed, Modifiers</label>
+        <input type="text" class="form-control" id="ac"
+          placeholder="e.g. 12 | touch:12, flat-footed:29(31) | +2 Dex," />
+      </div>
+      <div class="mb-3">
+        <label for="hp" class="form-label">HP</label>
+        <input type="text" class="form-control" id="hp" placeholder="e.g. 8 (1d6 + 4)" />
+      </div>
+      <div class="mb-3">
+        <label for="saves" class="form-label">Fort, Reflex, Will</label>
+        <input type="text" class="form-control" id="saves" placeholder="e.g. Fort:+1, Reflex:+2, Will:+4" />
+      </div>
+      <div class="mb-3">
+        <label for="speed" class="form-label">Speed</label>
+        <input type="text" class="form-control" id="speed" />
+      </div>
+      <div class="mb-3">
+        <label for="melee" class="form-label">Melee</label>
+        <input type="text" class="form-control" id="melee" />
+      </div>
+      <div class="mb-3">
+        <label for="specialAttacks" class="form-label">Special Attacks</label>
+        <input type="text" class="form-control" id="specialAttacks" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Spells Known</label>
+        <div id="spellsKnownList"></div>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addSpellKnown">Add Spell Row</button>
+      </div>
+      <div class="mb-3">
+        <label for="abilityScores" class="form-label">Ability Scores</label>
+        <input type="text" class="form-control" id="abilityScores"
+          placeholder="e.g. Str: 10, Dex: 14, Con: 12, Int: 12, Wis: 14, Cha: 18" />
+      </div>
+      <div class="mb-3">
+        <label for="feats" class="form-label">Feats</label>
+        <textarea class="form-control" id="feats" rows="2"
+          placeholder="e.g. Combat Casting [url], Toughness [url]"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="skills" class="form-label">Skills</label>
+        <input type="text" class="form-control" id="skills"
+          placeholder="e.g. Bluff:+8, Perception:+6, Spellcraft:+5, Use Magic Device:+8" />
+      </div>
+      <div class="mb-3">
+        <label for="specialAbilities" class="form-label">Special Abilities</label>
+        <textarea class="form-control" id="specialAbilities" rows="2"
+          placeholder="e.g. Horrific Visage (Su):Will save DC 15 or become shaken for 1 round; 5/day"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="equipment" class="form-label">Equipment</label>
+        <textarea class="form-control" id="equipment" rows="2"
+          placeholder="e.g. Silken Rope, 50ft; Small Tent; Backpack, Blanket, Bedroll; 47gp"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Generate Markdown</button>
+    </form>
+    <hr />
+    <h2>Generated Markdown</h2>
+    <pre id="markdownOutput" class="bg-light p-3 border"></pre>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="js/mdtemplate.js"></script>
+</body>
+
+</html>
