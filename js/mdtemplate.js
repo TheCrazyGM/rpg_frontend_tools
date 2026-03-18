@@ -425,7 +425,8 @@ ${spellbookMarkdown}` : ''}
 
 | Statistics     |                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ability Scores | ${get('abilityScores')} |
+| Ability Scores | **Str**: ${get('aStr')}, **Dex**: ${get('aDex')}, **Con**: ${get('aCon')}, **Int**: ${get('aInt')}, **Wis**: ${get('aWis')}, **Cha**: ${get('aCha')} |
+| Combat         | Base Atk: ${get('bab')}, **CMB**: ${get('cmb')}, **CMD**: ${get('cmd')} |
 | Feats          | ${featsMarkdown} |
 | Traits         | ${traitsMarkdown} |
 | Skills         | ${get('skills')} |

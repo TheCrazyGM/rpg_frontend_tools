@@ -140,9 +140,29 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="abilityScores" class="form-label">Ability Scores</label>
-        <input type="text" class="form-control" id="abilityScores"
-          placeholder="e.g. Str: 10, Dex: 14, Con: 12, Int: 12, Wis: 14, Cha: 18" />
+        <label class="form-label">Ability Scores</label>
+        <div class="row g-2">
+          <div class="col"><label class="form-label small">Str</label><input type="text" class="form-control" id="aStr" value="10" /></div>
+          <div class="col"><label class="form-label small">Dex</label><input type="text" class="form-control" id="aDex" placeholder="e.g. 14" /></div>
+          <div class="col"><label class="form-label small">Con</label><input type="text" class="form-control" id="aCon" placeholder="e.g. 12" /></div>
+          <div class="col"><label class="form-label small">Int</label><input type="text" class="form-control" id="aInt" placeholder="e.g. 12" /></div>
+          <div class="col"><label class="form-label small">Wis</label><input type="text" class="form-control" id="aWis" placeholder="e.g. 14" /></div>
+          <div class="col"><label class="form-label small">Cha</label><input type="text" class="form-control" id="aCha" placeholder="e.g. 18" /></div>
+        </div>
+      </div>
+      <div class="row g-2 mb-3">
+        <div class="col">
+          <label for="bab" class="form-label">Base Attack Bonus (BAB)</label>
+          <input type="text" class="form-control" id="bab" value="+0" />
+        </div>
+        <div class="col">
+          <label for="cmb" class="form-label">CMB</label>
+          <input type="text" class="form-control" id="cmb" value="+0" />
+        </div>
+        <div class="col">
+          <label for="cmd" class="form-label">CMD</label>
+          <input type="text" class="form-control" id="cmd" value="+0" />
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Feats</label>
