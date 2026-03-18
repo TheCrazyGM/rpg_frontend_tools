@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = urlInp.value.trim();
       if (!name) return null;
       return url ? `[${name}](${url})` : name;
-    }).filter(Boolean).join(', ') || 'none';
+    }).filter(Boolean).join(', ') || 'None';
 
     // Gather Notable Features rows
     const featureRows = Array.from(document.getElementById('notableFeaturesList').children);
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = urlInp.value.trim();
       if (!name) return null;
       return url ? `[${name}](${url})` : name;
-    }).filter(Boolean).join(', ') || 'none';
+    }).filter(Boolean).join(', ') || 'None';
 
     // Gather Feats rows
     const featRows = Array.from(document.getElementById('featsList').children);
@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = urlInp.value.trim();
       if (!name) return null;
       return url ? `[${name}](${url})` : name;
-    }).filter(Boolean).join(', ') || 'none';
+    }).filter(Boolean).join(', ') || 'None';
 
     // Gather Spontaneous Prepared rows
     const spontaneousPreparedRows = Array.from(document.getElementById('spontaneousPreparedList').children);
@@ -537,15 +537,15 @@ ${attacksMarkdown}
 
 ${spellcastingSelect.value !== 'none' ? `| ${spellLabels[spellcastingSelect.value]} | (CL ${get('casterLevel')}) |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spellsKnownMarkdown}` : ''}${includeSpontaneousPreparedCheckbox.checked && spontaneousPreparedMarkdown ? `
+${spellsKnownMarkdown || '| None | |'}` : ''}${spellcastingSelect.value !== 'none' && includeSpontaneousPreparedCheckbox.checked && spontaneousPreparedMarkdown ? `
 
 | Spells Prepared | (CL ${get('casterLevel')}) |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spontaneousPreparedMarkdown}` : ''}${includeSpellsKnownCheckbox.checked && spellsKnownExtraMarkdown ? `
+${spontaneousPreparedMarkdown}` : ''}${spellcastingSelect.value !== 'none' && includeSpellsKnownCheckbox.checked && spellsKnownExtraMarkdown ? `
 
 | Spells Known | (CL ${get('casterLevel')}) |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spellsKnownExtraMarkdown}` : ''}${includeSpellbookCheckbox.checked && spellbookMarkdown ? `
+${spellsKnownExtraMarkdown}` : ''}${spellcastingSelect.value !== 'none' && includeSpellbookCheckbox.checked && spellbookMarkdown ? `
 
 | Spellbook | |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
