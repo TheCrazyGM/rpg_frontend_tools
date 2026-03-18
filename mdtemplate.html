@@ -19,9 +19,10 @@
         <input type="text" class="form-control" id="characterName" required />
       </div>
       <div class="mb-3">
-        <label for="templates" class="form-label">Templates (comma separated, with URLs optional)</label>
-        <input type="text" class="form-control" id="templates"
-          placeholder="e.g. Sorcerer 1 [url], Accursed Bloodline [url]" />
+        <label class="form-label">Templates (Classes, Archetypes, etc.)</label>
+        <div id="templatesList"></div>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addTemplate">Add Template</button>
+        <div id="templateMinMsg" class="text-warning small mt-1" style="display:none;">A character must have at least 1 template!</div>
       </div>
       <div class="mb-3">
         <label for="level" class="form-label">Character Level</label>
@@ -145,11 +146,11 @@
         <label class="form-label">Ability Scores</label>
         <div class="row g-2">
           <div class="col"><label class="form-label small">Str</label><input type="text" class="form-control" id="aStr" value="10" /></div>
-          <div class="col"><label class="form-label small">Dex</label><input type="text" class="form-control" id="aDex" placeholder="e.g. 14" /></div>
-          <div class="col"><label class="form-label small">Con</label><input type="text" class="form-control" id="aCon" placeholder="e.g. 12" /></div>
-          <div class="col"><label class="form-label small">Int</label><input type="text" class="form-control" id="aInt" placeholder="e.g. 12" /></div>
-          <div class="col"><label class="form-label small">Wis</label><input type="text" class="form-control" id="aWis" placeholder="e.g. 14" /></div>
-          <div class="col"><label class="form-label small">Cha</label><input type="text" class="form-control" id="aCha" placeholder="e.g. 18" /></div>
+          <div class="col"><label class="form-label small">Dex</label><input type="text" class="form-control" id="aDex" value="10" /></div>
+          <div class="col"><label class="form-label small">Con</label><input type="text" class="form-control" id="aCon" value="10" /></div>
+          <div class="col"><label class="form-label small">Int</label><input type="text" class="form-control" id="aInt" value="10" /></div>
+          <div class="col"><label class="form-label small">Wis</label><input type="text" class="form-control" id="aWis" value="10" /></div>
+          <div class="col"><label class="form-label small">Cha</label><input type="text" class="form-control" id="aCha" value="10" /></div>
         </div>
       </div>
       <div class="row g-2 mb-3">

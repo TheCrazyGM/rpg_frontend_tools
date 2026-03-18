@@ -1,5 +1,56 @@
-// Dynamic Spells Known Fields
+// Character Sheet Generator
 document.addEventListener('DOMContentLoaded', () => {
+  function createTemplateRow(name = '', url = '') {
+    const row = document.createElement('div');
+    row.className = 'input-group mb-2';
+    row.innerHTML = `
+      <input type="text" class="form-control" placeholder="e.g. Sorcerer 1, Accursed Bloodline" value="${name}">
+      <input type="text" class="form-control" placeholder="URL (optional)" value="${url}">
+      <button type="button" class="btn btn-outline-danger remove-template-btn">Remove</button>
+    `;
+    return row;
+  }
+
+  function addTemplateRow(name = '', url = '') {
+    document.getElementById('templatesList').appendChild(createTemplateRow(name, url));
+  }
+
+  let templateMsgTimer = null;
+
+  function showTemplateMinMsg() {
+    const msg = document.getElementById('templateMinMsg');
+    clearTimeout(templateMsgTimer);
+    msg.style.transition = 'none';
+    msg.style.opacity = '1';
+    msg.style.display = 'block';
+    templateMsgTimer = setTimeout(() => {
+      msg.style.transition = 'opacity 1s ease';
+      msg.style.opacity = '0';
+      setTimeout(() => { msg.style.display = 'none'; }, 1000);
+    }, 5000);
+  }
+
+  document.getElementById('templatesList').addEventListener('click', function (event) {
+    if (event.target.classList.contains('remove-template-btn')) {
+      const list = document.getElementById('templatesList');
+      if (list.children.length > 1) {
+        event.target.closest('.input-group').remove();
+        document.getElementById('templateMinMsg').style.display = 'none';
+      } else {
+        showTemplateMinMsg();
+      }
+    }
+  });
+
+  document.getElementById('addTemplate').addEventListener('click', () => {
+    addTemplateRow();
+    document.getElementById('templateMinMsg').style.display = 'none';
+  });
+
+  if (!document.getElementById('templatesList').hasChildNodes()) {
+    addTemplateRow();
+  }
+  // Dynamic Spells Known Fields
   // Create a new spell row with the given level and spells
   function createSpellRow(level = '', spells = '') {
     const row = document.createElement('div');
@@ -390,6 +441,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return `| ${type} | ${desc} |`;
     }).filter(Boolean).join('\n') || '| None | |';
 
+    // Gather Templates rows
+    const templateRows = Array.from(document.getElementById('templatesList').children);
+    const templatesMarkdown = templateRows.map(row => {
+      const [nameInp, urlInp] = row.querySelectorAll('input');
+      const name = nameInp.value.trim();
+      const url = urlInp.value.trim();
+      if (!name) return null;
+      return url ? `[${name}](${url})` : name;
+    }).filter(Boolean).join(', ') || 'none';
+
     // Gather Notable Features rows
     const featureRows = Array.from(document.getElementById('notableFeaturesList').children);
     const notableFeaturesMarkdown = featureRows.map(row => {
@@ -458,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### Premade Character: ${get('characterName')}
 
-| Templates:    | ${get('templates')} | Character Level ${get('level')} |
+| Templates:    | ${templatesMarkdown} | Character Level ${get('level')} |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | ${raceMarkdown} | ${get('alignment')} | Initiative ${get('initiative')}     |
 | Senses:       | ${get('senses')} | Perception ${get('perception')}     |
