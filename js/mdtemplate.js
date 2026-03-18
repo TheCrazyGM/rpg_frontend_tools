@@ -537,19 +537,19 @@ ${attacksMarkdown}
 
 ${spellcastingSelect.value !== 'none' ? `| ${spellLabels[spellcastingSelect.value]} | (CL ${get('casterLevel')}) |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spellsKnownMarkdown || '| None | |'}` : ''}${spellcastingSelect.value !== 'none' && includeSpontaneousPreparedCheckbox.checked && spontaneousPreparedMarkdown ? `
+${spellsKnownMarkdown || '| None | |'}` : ''}${spellcastingSelect.value !== 'none' && includeSpontaneousPreparedCheckbox.checked ? `
 
 | Spells Prepared | (CL ${get('casterLevel')}) |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spontaneousPreparedMarkdown}` : ''}${spellcastingSelect.value !== 'none' && includeSpellsKnownCheckbox.checked && spellsKnownExtraMarkdown ? `
+${spontaneousPreparedMarkdown || '| None | |'}` : ''}${spellcastingSelect.value !== 'none' && includeSpellsKnownCheckbox.checked ? `
 
 | Spells Known | (CL ${get('casterLevel')}) |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spellsKnownExtraMarkdown}` : ''}${spellcastingSelect.value !== 'none' && includeSpellbookCheckbox.checked && spellbookMarkdown ? `
+${spellsKnownExtraMarkdown || '| None | |'}` : ''}${spellcastingSelect.value !== 'none' && includeSpellbookCheckbox.checked ? `
 
 | Spellbook | |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-${spellbookMarkdown}` : ''}
+${spellbookMarkdown || '| None | |'}` : ''}
 
 | Statistics     |                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
