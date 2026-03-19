@@ -14,9 +14,16 @@
   <div class="container mt-5">
     <h1>Markdown Character Sheet Generator</h1>
     <form id="characterForm">
-      <div class="mb-3">
-        <label for="characterName" class="form-label">Character Name</label>
-        <input type="text" class="form-control" id="characterName" required />
+      <!-- Identity -->
+      <div class="mb-3 row g-2">
+        <div class="col-12 col-md">
+          <label for="characterName" class="form-label">Character Name</label>
+          <input type="text" class="form-control" id="characterName" required />
+        </div>
+        <div class="col-12 col-md-2">
+          <label for="level" class="form-label">Character Level</label>
+          <input type="text" class="form-control" id="level" />
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Templates (Classes, Archetypes, etc.)</label>
@@ -24,67 +31,97 @@
         <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addTemplate">Add Template</button>
         <div id="templateMinMsg" class="text-warning small mt-1" style="display:none;">A character must have at least 1 template!</div>
       </div>
-      <div class="mb-3">
-        <label for="level" class="form-label">Character Level</label>
-        <input type="text" class="form-control" id="level" />
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Race / Size</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="race" placeholder="e.g. Medium, Human" />
-          <input type="text" class="form-control" id="raceUrl" placeholder="URL (optional)" />
+      <div class="mb-3 row g-2">
+        <div class="col-12 col-md-5">
+          <label for="race" class="form-label">Race / Size</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="race" placeholder="e.g. Medium, Human" />
+            <input type="text" class="form-control" id="raceUrl" aria-label="Race / Size URL (optional)" placeholder="URL (optional)" />
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <label for="alignment" class="form-label">Alignment</label>
+          <input type="text" class="form-control" id="alignment" placeholder="e.g. chaotic, good" />
+        </div>
+        <div class="col-12 col-md-3">
+          <label for="initiative" class="form-label">Initiative</label>
+          <input type="text" class="form-control" id="initiative" />
         </div>
       </div>
-      <div class="mb-3">
-        <label for="alignment" class="form-label">Alignment</label>
-        <input type="text" class="form-control" id="alignment" placeholder="e.g. chaotic, good" />
+      <div class="mb-3 row g-2">
+        <div class="col-12 col-md-8">
+          <label for="senses" class="form-label">Senses</label>
+          <input type="text" class="form-control" id="senses" />
+        </div>
+        <div class="col-12 col-md-4">
+          <label for="perception" class="form-label">Perception</label>
+          <input type="text" class="form-control" id="perception" />
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="initiative" class="form-label">Initiative</label>
-        <input type="text" class="form-control" id="initiative" />
+      <!-- Defenses -->
+      <div class="mb-3 row g-2">
+        <div class="col-4 col-md-2">
+          <label for="ac" class="form-label">AC</label>
+          <input type="text" class="form-control" id="ac" placeholder="e.g. 12" />
+        </div>
+        <div class="col-8 col-md-4">
+          <label for="acMods" class="form-label">AC Modifiers</label>
+          <input type="text" class="form-control" id="acMods" placeholder="e.g. +2 Dex" />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="acDetails" class="form-label">AC Details (Touch, Flat-footed)</label>
+          <input type="text" class="form-control" id="acDetails" placeholder="e.g. touch:12, flat-footed:29(31)" />
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="senses" class="form-label">Senses</label>
-        <input type="text" class="form-control" id="senses" />
-      </div>
-      <div class="mb-3">
-        <label for="perception" class="form-label">Perception</label>
-        <input type="text" class="form-control" id="perception" />
-      </div>
-      <div class="mb-3">
-        <label for="ac" class="form-label">AC</label>
-        <input type="text" class="form-control" id="ac" placeholder="e.g. 12" />
-      </div>
-      <div class="mb-3">
-        <label for="acDetails" class="form-label">AC Details (Touch, Flat-footed)</label>
-        <input type="text" class="form-control" id="acDetails" placeholder="e.g. touch:12, flat-footed:29(31)" />
-      </div>
-      <div class="mb-3">
-        <label for="acMods" class="form-label">AC Modifiers</label>
-        <input type="text" class="form-control" id="acMods" placeholder="e.g. +2 Dex" />
-      </div>
-      <div class="mb-3">
-        <label for="hp" class="form-label">HP</label>
-        <input type="text" class="form-control" id="hp" placeholder="e.g. 8 (1d6 + 4)" />
-      </div>
-      <div class="row g-2 mb-3">
-        <div class="col">
+      <div class="mb-3 row g-2">
+        <div class="col-6 col-md-3">
+          <label for="hp" class="form-label">HP</label>
+          <input type="text" class="form-control" id="hp" placeholder="e.g. 8 (1d6 + 4)" />
+        </div>
+        <div class="col-6 col-md-2">
+          <label for="speed" class="form-label">Speed</label>
+          <input type="text" class="form-control" id="speed" />
+        </div>
+        <div class="col-4 col-md">
           <label for="saveFort" class="form-label">Fortitude</label>
           <input type="text" class="form-control" id="saveFort" placeholder="e.g. +4" />
         </div>
-        <div class="col">
+        <div class="col-4 col-md">
           <label for="saveReflex" class="form-label">Reflex</label>
           <input type="text" class="form-control" id="saveReflex" placeholder="e.g. +1" />
         </div>
-        <div class="col">
+        <div class="col-4 col-md">
           <label for="saveWill" class="form-label">Will</label>
           <input type="text" class="form-control" id="saveWill" placeholder="e.g. +6 (+7 vs. fear)" />
         </div>
       </div>
+      <!-- Statistics -->
       <div class="mb-3">
-        <label for="speed" class="form-label">Speed</label>
-        <input type="text" class="form-control" id="speed" />
+        <label class="form-label">Ability Scores</label>
+        <div class="row g-2">
+          <div class="col-4 col-md"><label for="aStr" class="form-label small">Str</label><input type="text" class="form-control" id="aStr" value="10" /></div>
+          <div class="col-4 col-md"><label for="aDex" class="form-label small">Dex</label><input type="text" class="form-control" id="aDex" value="10" /></div>
+          <div class="col-4 col-md"><label for="aCon" class="form-label small">Con</label><input type="text" class="form-control" id="aCon" value="10" /></div>
+          <div class="col-4 col-md"><label for="aInt" class="form-label small">Int</label><input type="text" class="form-control" id="aInt" value="10" /></div>
+          <div class="col-4 col-md"><label for="aWis" class="form-label small">Wis</label><input type="text" class="form-control" id="aWis" value="10" /></div>
+          <div class="col-4 col-md"><label for="aCha" class="form-label small">Cha</label><input type="text" class="form-control" id="aCha" value="10" /></div>
+        </div>
       </div>
+      <div class="row g-2 mb-3">
+        <div class="col-12 col-md">
+          <label for="bab" class="form-label">Base Attack Bonus (BAB)</label>
+          <input type="text" class="form-control" id="bab" value="+0" />
+        </div>
+        <div class="col-6 col-md">
+          <label for="cmb" class="form-label">CMB</label>
+          <input type="text" class="form-control" id="cmb" value="+0" />
+        </div>
+        <div class="col-6 col-md">
+          <label for="cmd" class="form-label">CMD</label>
+          <input type="text" class="form-control" id="cmd" value="+0" />
+        </div>
+      </div>
+      <!-- Offense -->
       <div class="mb-3">
         <label class="form-label">Attacks</label>
         <div id="attacksList"></div>
@@ -95,6 +132,7 @@
         <label for="specialAttacks" class="form-label">Special Attacks</label>
         <input type="text" class="form-control" id="specialAttacks" />
       </div>
+      <!-- Spellcasting -->
       <div class="mb-3">
         <label for="spellcasting" class="form-label">Spellcasting</label>
         <select class="form-select" id="spellcasting">
@@ -142,31 +180,7 @@
           </div>
         </div>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Ability Scores</label>
-        <div class="row g-2">
-          <div class="col"><label class="form-label small">Str</label><input type="text" class="form-control" id="aStr" value="10" /></div>
-          <div class="col"><label class="form-label small">Dex</label><input type="text" class="form-control" id="aDex" value="10" /></div>
-          <div class="col"><label class="form-label small">Con</label><input type="text" class="form-control" id="aCon" value="10" /></div>
-          <div class="col"><label class="form-label small">Int</label><input type="text" class="form-control" id="aInt" value="10" /></div>
-          <div class="col"><label class="form-label small">Wis</label><input type="text" class="form-control" id="aWis" value="10" /></div>
-          <div class="col"><label class="form-label small">Cha</label><input type="text" class="form-control" id="aCha" value="10" /></div>
-        </div>
-      </div>
-      <div class="row g-2 mb-3">
-        <div class="col">
-          <label for="bab" class="form-label">Base Attack Bonus (BAB)</label>
-          <input type="text" class="form-control" id="bab" value="+0" />
-        </div>
-        <div class="col">
-          <label for="cmb" class="form-label">CMB</label>
-          <input type="text" class="form-control" id="cmb" value="+0" />
-        </div>
-        <div class="col">
-          <label for="cmd" class="form-label">CMD</label>
-          <input type="text" class="form-control" id="cmd" value="+0" />
-        </div>
-      </div>
+      <!-- Feats & Traits -->
       <div class="mb-3">
         <label class="form-label">Feats</label>
         <div id="featsList"></div>
@@ -179,6 +193,7 @@
         <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addTrait">Add Trait</button>
         <div id="traitMinMsg" class="text-warning small mt-1" style="display:none;">Every PC has at least 1 trait!</div>
       </div>
+      <!-- Skills & Abilities -->
       <div class="mb-3">
         <label for="skills" class="form-label">Skills</label>
         <input type="text" class="form-control" id="skills"
@@ -194,6 +209,7 @@
         <div id="notableFeaturesList"></div>
         <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addNotableFeature">Add Notable Feature</button>
       </div>
+      <!-- Equipment -->
       <div class="mb-3">
         <label for="equipment" class="form-label">Equipment</label>
         <textarea class="form-control" id="equipment" rows="2"
